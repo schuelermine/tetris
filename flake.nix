@@ -14,8 +14,9 @@
           inherit ghc-version;
         };
       };
+    }) // {
       overlays.default = self: super: {
         tetris = self.packages.${system}.default;
       };
-    });
+    };
 }
