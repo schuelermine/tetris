@@ -5,13 +5,17 @@
     let ghc-version = "ghc8107";
     in flake-utils.lib.eachDefaultSystem (system: {
       defaultPackage = self.packages.${system}.default;
-        # defaultPackage is deprecated as of Nix 2.7.0
+      # defaultPackage is deprecated as of Nix 2.7.0
       packages = rec {
         default = tetris;
         tetris = import ./default.nix {
-          hkgs = nixpkgs.legacyPackages.${system}.haskell.packages.${ghc-version};
+          hkgs =
+            nixpkgs.legacyPackages.${system}.haskell.packages.${ghc-version};
           inherit ghc-version;
         };
+      };
+      overlays.default = self: super: {
+        tetris = self.packages.${system}.default;
       };
     });
 }
