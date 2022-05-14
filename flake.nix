@@ -16,7 +16,7 @@
       };
     }) // {
       overlays.default = self: super: {
-        tetris = self.packages.${system}.default;
+        tetris = self.packages.${self.system}.default;
       };
     };
 }
