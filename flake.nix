@@ -15,8 +15,8 @@
         };
       };
     }) // {
-      overlays.default = self: super: {
-        tetris = self.packages.${self.system}.default;
+      overlays.default = pkgs: pkgs-super: {
+        tetris = self.packages.${pkgs.system}.default;
       };
     };
 }
